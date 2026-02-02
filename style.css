@@ -1,0 +1,290 @@
+:root {
+    --bg-color: #f5f7fa;
+    --text-color: #1a1a1a;
+    --card-bg: #ffffff;
+    --primary-color: #0d6efd;
+    --heading-color: #2c3e50;
+    --toggle-btn-bg: #2c3e50;
+    --toggle-btn-text: #ffffff;
+}
+
+.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --card-bg: #1e1e1e;
+    --primary-color: #bb86fc;
+    --heading-color: #ffffff;
+    --toggle-btn-bg: #f5f7fa;
+    --toggle-btn-text: #1a1a1a;
+}
+
+body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Override Elementor Backgrounds */
+.elementor-section,
+.elementor-column,
+.elementor-container,
+.elementor-widget-container {
+    background-color: transparent !important;
+}
+
+/* Card-like styling for main content sections */
+main#content {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.elementor-widget-text-editor p,
+.elementor-widget-text-editor h3,
+.elementor-widget-heading h2 {
+    color: var(--text-color) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--heading-color) !important;
+}
+
+a {
+    color: var(--primary-color) !important;
+}
+
+/* Card Styling for readability */
+.page-content>.elementor-section,
+.page-content>.elementor-container,
+article,
+.elementor-widget-text-editor.elementor-element {
+    /* Optional: Add card styling to text blocks if desired, or keep clean */
+}
+
+/* Dark Mode Toggle Button */
+#theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    background-color: var(--toggle-btn-bg);
+    color: var(--toggle-btn-text);
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+    transition: all 0.3s ease;
+}
+
+#theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Lightbox Adjustments for Dark Mode */
+.dark-mode .elementor-lightbox {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    main#content {
+        padding: 10px;
+        margin: 10px auto;
+    }
+
+    #theme-toggle {
+        top: 10px;
+        right: 10px;
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+/* Layout Refinements */
+
+/* Center "Participant X" headers */
+.elementor-widget-text-editor p strong {
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Force Consistent Frame on All Participant Carousels */
+.elementor-widget-image-carousel .elementor-widget-container {
+    border: 1px solid #CACACA !important;
+    border-radius: 4px;
+    padding: 10px 0;
+    /* Add some spacing inside the frame */
+    background: var(--card-bg);
+    /* Ensure it respects dark mode */
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.dark-mode .elementor-widget-image-carousel .elementor-widget-container {
+    border-color: #444 !important;
+    /* Darker border for dark mode */
+}
+
+/* Remove default Elementor/Swiper frames from INNER elements to avoid double borders */
+.elementor-image-carousel-wrapper,
+.swiper-slide,
+.swiper-slide-inner {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+/* Hide default Elementor Swiper Buttons */
+.elementor-swiper-button {
+    display: none !important;
+}
+
+/* Custom Carousel Navigation */
+.custom-carousel-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+    padding-bottom: 10px;
+}
+
+.custom-nav-btn {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 8px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.custom-nav-btn:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.dark-mode .custom-nav-btn {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.dark-mode .custom-nav-btn:hover {
+    background-color: var(--primary-color);
+    color: #121212;
+}
+
+/* Ensure images don't have weird spacing */
+.swiper-slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    display: block;
+}
+
+/* Lightbox Modal */
+#custom-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
+    /* Above toggle button */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#custom-lightbox.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#custom-lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+}
+
+#custom-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    line-height: 1;
+}
+
+color: var(--primary-color);
+}
+
+/* Lightbox Navigation Buttons */
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: none;
+    font-size: 3rem;
+    cursor: pointer;
+    padding: 20px;
+    transition: color 0.3s ease, transform 0.2s ease;
+    z-index: 10010;
+    /* Above image */
+    height: 100%;
+    width: 15%;
+    /* Large hit area */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-nav:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+    /* Subtle highlight on hover */
+}
+
+.lightbox-prev {
+    left: 0;
+    justify-content: flex-start;
+    padding-left: 30px;
+}
+
+.lightbox-next {
+    right: 0;
+    justify-content: flex-end;
+    padding-right: 30px;
+}
+
+/* Add SVG arrows via pseudoelements or expected content in HTML? 
+   We will put arrow characters or SVGs in the JS. 
+   Let's keep it simple with text/font arrows for now, as consistent with request.
+*/
